@@ -1,0 +1,1556 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Lalaran 21 Uslub Bahasa Arab</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  font-family:Arial,sans-serif;
+  color:#fff;
+  min-height:100vh;
+  background:
+    linear-gradient(rgba(0,70,45,.72),rgba(0,35,25,.85)),
+    url("galih.jpg") center/cover fixed no-repeat;
+  overflow-x:hidden;
+}
+
+/* ================= HUJAN ================= */
+
+#rain{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:1;
+  overflow:hidden;
+}
+
+.drop{
+  position:absolute;
+  top:-30px;
+  width:2px;
+  height:20px;
+  background:rgba(255,255,255,.38);
+  border-radius:50%;
+  animation:fall linear infinite;
+}
+
+@keyframes fall{
+  to{
+    transform:translateY(110vh);
+  }
+}
+
+/* ================= LOVE ================= */
+
+#hearts{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:999;
+}
+
+.heart{
+  position:fixed;
+  font-size:20px;
+  animation:heartFly 1.1s ease-out forwards;
+}
+
+@keyframes heartFly{
+  0%{
+    opacity:1;
+    transform:translate(0,0) scale(.7);
+  }
+
+  100%{
+    opacity:0;
+    transform:
+      translate(var(--x),-90px)
+      scale(1.5)
+      rotate(20deg);
+  }
+}
+
+/* ================= CONTAINER ================= */
+
+.container{
+  position:relative;
+  z-index:5;
+  width:min(1100px,94%);
+  margin:auto;
+}
+
+/* ================= HEADER ================= */
+
+header{
+  text-align:center;
+  padding:45px 15px 25px;
+}
+
+.logo{
+  width:85px;
+  height:85px;
+  margin:auto;
+  border-radius:50%;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  font-size:42px;
+
+  background:rgba(255,255,255,.15);
+  border:2px solid rgba(255,255,255,.4);
+
+  box-shadow:
+    0 8px 30px rgba(0,0,0,.3);
+}
+
+h1{
+  margin-top:18px;
+  font-size:clamp(28px,6vw,50px);
+  text-shadow:0 3px 12px #000;
+}
+
+.subtitle{
+  margin-top:8px;
+  opacity:.9;
+}
+
+/* ================= NAV ================= */
+
+nav{
+  position:sticky;
+  top:8px;
+  z-index:50;
+
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:8px;
+
+  margin:10px auto 25px;
+}
+
+button{
+  border:0;
+  cursor:pointer;
+  color:white;
+  font-weight:bold;
+
+  padding:11px 17px;
+
+  border-radius:14px;
+
+  background:rgba(12,110,75,.85);
+
+  border:1px solid rgba(255,255,255,.25);
+
+  box-shadow:
+    0 5px 15px rgba(0,0,0,.2);
+
+  transition:.2s;
+}
+
+button:hover{
+  transform:translateY(-2px);
+  background:rgba(18,145,95,.95);
+}
+
+button:active{
+  transform:scale(.96);
+}
+
+/* ================= GLASS ================= */
+
+.glass{
+  background:rgba(255,255,255,.13);
+
+  border:1px solid rgba(255,255,255,.25);
+
+  backdrop-filter:blur(13px);
+  -webkit-backdrop-filter:blur(13px);
+
+  border-radius:25px;
+
+  box-shadow:
+    0 12px 35px rgba(0,0,0,.25);
+}
+
+/* ================= SECTION ================= */
+
+section{
+  display:none;
+  margin-bottom:30px;
+}
+
+section.active{
+  display:block;
+}
+
+/* ================= HOME ================= */
+
+.hero{
+  padding:35px 25px;
+  text-align:center;
+}
+
+.hero h2{
+  font-size:30px;
+  margin-bottom:15px;
+}
+
+.hero p{
+  line-height:1.8;
+  opacity:.9;
+}
+
+.big-btn{
+  margin-top:22px;
+  padding:14px 25px;
+  font-size:17px;
+}
+
+/* ================= LALARAN ================= */
+
+.lalaran{
+  padding:30px 20px;
+  text-align:center;
+}
+
+.counter{
+  font-size:15px;
+  opacity:.8;
+  margin-bottom:18px;
+}
+
+.uslub{
+  direction:rtl;
+
+  font-family:
+    "Times New Roman",
+    serif;
+
+  font-size:clamp(30px,7vw,52px);
+
+  font-weight:bold;
+
+  line-height:1.7;
+
+  padding:25px 10px;
+
+  text-shadow:
+    0 3px 10px #000;
+}
+
+.answer{
+  display:none;
+
+  margin:15px auto;
+
+  padding:18px;
+
+  max-width:700px;
+
+  background:rgba(0,0,0,.22);
+
+  border-radius:18px;
+}
+
+.answer.show{
+  display:block;
+  animation:pop .3s ease;
+}
+
+.answer-title{
+  font-size:12px;
+  opacity:.7;
+  margin-bottom:5px;
+}
+
+.answer-text{
+  font-size:25px;
+  font-weight:bold;
+}
+
+.lar-buttons{
+  display:flex;
+
+  justify-content:center;
+
+  flex-wrap:wrap;
+
+  gap:10px;
+
+  margin-top:20px;
+}
+
+/* ================= MATERI ================= */
+
+.material-grid{
+  display:grid;
+
+  grid-template-columns:
+    repeat(auto-fit,minmax(290px,1fr));
+
+  gap:16px;
+}
+
+.material-card{
+  padding:22px;
+}
+
+.number{
+  display:inline-block;
+
+  padding:5px 10px;
+
+  border-radius:20px;
+
+  background:rgba(0,0,0,.2);
+
+  font-size:13px;
+
+  margin-bottom:10px;
+}
+
+.material-title{
+  font-size:22px;
+
+  font-weight:bold;
+
+  margin-bottom:12px;
+}
+
+.arabic{
+  direction:rtl;
+
+  font-family:
+    "Times New Roman",
+    serif;
+
+  font-size:25px;
+
+  line-height:1.8;
+
+  margin:10px 0;
+}
+
+.example{
+  direction:rtl;
+
+  font-family:
+    "Times New Roman",
+    serif;
+
+  font-size:20px;
+
+  line-height:1.8;
+
+  padding:13px;
+
+  border-radius:15px;
+
+  background:rgba(0,0,0,.17);
+}
+
+.meaning{
+  margin-top:12px;
+
+  line-height:1.6;
+
+  font-style:italic;
+
+  color:#eafff3;
+}
+
+/* ================= KUIS ================= */
+
+.quiz{
+  padding:28px 20px;
+}
+
+.quiz-number{
+  text-align:center;
+  opacity:.8;
+}
+
+.quiz-question{
+  text-align:center;
+
+  margin:18px 0;
+
+  font-size:19px;
+}
+
+.quiz-arabic{
+  direction:rtl;
+
+  font-family:
+    "Times New Roman",
+    serif;
+
+  font-size:28px;
+
+  line-height:1.8;
+
+  text-align:center;
+
+  padding:20px;
+
+  background:rgba(0,0,0,.18);
+
+  border-radius:18px;
+}
+
+.options{
+  display:grid;
+
+  gap:12px;
+
+  margin-top:20px;
+}
+
+.option{
+  text-align:left;
+
+  width:100%;
+
+  padding:15px;
+
+  background:rgba(255,255,255,.14);
+}
+
+.option.correct{
+  background:rgba(0,150,80,.8);
+}
+
+.option.wrong{
+  background:rgba(170,40,40,.8);
+}
+
+.quiz-result{
+  text-align:center;
+
+  margin-top:20px;
+
+  font-size:22px;
+
+  font-weight:bold;
+}
+
+.quiz-nav{
+  display:flex;
+
+  justify-content:center;
+
+  gap:10px;
+
+  margin-top:20px;
+
+  flex-wrap:wrap;
+}
+
+/* ================= MUSIC ================= */
+
+.music{
+  position:fixed;
+
+  right:15px;
+  bottom:15px;
+
+  z-index:100;
+}
+
+/* ================= FOOTER ================= */
+
+footer{
+  text-align:center;
+
+  padding:30px 10px;
+
+  opacity:.75;
+}
+
+/* ================= ANIMATION ================= */
+
+@keyframes pop{
+  from{
+    transform:scale(.8);
+    opacity:0;
+  }
+
+  to{
+    transform:scale(1);
+    opacity:1;
+  }
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:600px){
+
+  header{
+    padding-top:30px;
+  }
+
+  .hero{
+    padding:25px 17px;
+  }
+
+  .material-grid{
+    grid-template-columns:1fr;
+  }
+
+  .uslub{
+    font-size:32px;
+  }
+
+  .quiz-arabic{
+    font-size:23px;
+  }
+
+  nav button{
+    padding:9px 12px;
+    font-size:13px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- HUJAN -->
+<div id="rain"></div>
+
+<!-- LOVE -->
+<div id="hearts"></div>
+
+
+<div class="container">
+
+<!-- ================= HEADER ================= -->
+
+<header>
+
+  <div class="logo">
+    📚
+  </div>
+
+  <h1>
+    لَعَلَّرَان 21 أُسْلُوب
+  </h1>
+
+  <p class="subtitle">
+    Lalaran Uslub Bahasa Arab
+  </p>
+
+</header>
+
+
+<!-- ================= NAVIGASI ================= -->
+
+<nav>
+
+  <button onclick="showSection('home')">
+    🏠 Beranda
+  </button>
+
+  <button onclick="showSection('lalaran')">
+    📖 Lalaran
+  </button>
+
+  <button onclick="showSection('materi')">
+    📚 Materi
+  </button>
+
+  <button onclick="showSection('kuis')">
+    📝 Kuis
+  </button>
+
+  <button onclick="toggleMusic()" id="musicBtn">
+    🎵 Musik
+  </button>
+
+</nav>
+
+
+<!-- ================= HOME ================= -->
+
+<section id="home" class="active">
+
+  <div class="glass hero">
+
+    <h2>
+      🌿 Lalaran 21 Uslub Bahasa Arab
+    </h2>
+
+    <p>
+      Hafalkan uslub Bahasa Arab dengan cara yang
+      lebih menyenangkan.
+      Pilih menu <b>Lalaran</b> untuk menghafal,
+      <b>Materi</b> untuk mempelajari semua contoh,
+      atau <b>Kuis</b> untuk menguji hafalanmu.
+    </p>
+
+    <button
+      class="big-btn"
+      onclick="showSection('lalaran')">
+
+      🚀 Mulai Lalaran
+
+    </button>
+
+  </div>
+
+</section>
+
+
+<!-- ================= LALARAN ================= -->
+
+<section id="lalaran">
+
+  <div class="glass lalaran">
+
+    <div
+      class="counter"
+      id="larCounter">
+    </div>
+
+
+    <!-- USLUB -->
+    <div
+      class="uslub"
+      id="larUslub">
+    </div>
+
+
+    <!-- JAWABAN -->
+    <div
+      class="answer"
+      id="larAnswer">
+
+      <div class="answer-title">
+        JAWABAN
+      </div>
+
+      <div
+        class="answer-text"
+        id="larAnswerText">
+      </div>
+
+    </div>
+
+
+    <button
+      onclick="revealAnswer()"
+      id="revealBtn">
+
+      👀 Lihat Jawaban
+
+    </button>
+
+
+    <div class="lar-buttons">
+
+      <button onclick="prevLar()">
+        ⬅️ Sebelumnya
+      </button>
+
+      <button onclick="nextLar()">
+        Berikutnya ➡️
+      </button>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ================= MATERI ================= -->
+
+<section id="materi">
+
+  <div
+    class="material-grid"
+    id="materialGrid">
+  </div>
+
+</section>
+
+
+<!-- ================= KUIS ================= -->
+
+<section id="kuis">
+
+  <div class="glass quiz">
+
+    <div
+      class="quiz-number"
+      id="quizNumber">
+    </div>
+
+
+    <div class="quiz-question">
+      Apa arti kalimat di bawah ini?
+    </div>
+
+
+    <div
+      class="quiz-arabic"
+      id="quizArabic">
+    </div>
+
+
+    <div
+      class="options"
+      id="options">
+    </div>
+
+
+    <div
+      class="quiz-result"
+      id="quizResult">
+    </div>
+
+
+    <div class="quiz-nav">
+
+      <button onclick="prevQuiz()">
+        ⬅️ Sebelumnya
+      </button>
+
+      <button onclick="nextQuiz()">
+        Berikutnya ➡️
+      </button>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+  🌿 Semangat menghafal 21 Uslub Bahasa Arab 🌿
+
+</footer>
+
+</div>
+
+
+<!-- ================= AUDIO ================= -->
+
+<audio
+  id="bgMusic"
+  src="lagu.mp3"
+  loop>
+</audio>
+
+
+<!-- TOMBOL MUSIK MELAYANG -->
+
+<button
+  class="music"
+  onclick="toggleMusic()"
+  id="musicFloating">
+
+  🎵 Musik
+
+</button>
+
+
+<script>
+
+/* =========================================================
+   DATA 21 USLUB
+========================================================= */
+
+const DATA = [
+
+[
+1,
+"Sebenarnya",
+"فِي الْحَقِيقَةِ",
+"مَا الَّذِي حَدَثَ فِي الْحَقِيقَةِ؟",
+"Apa yang sebenarnya terjadi?"
+],
+
+[
+2,
+"Sebentar Lagi",
+"اِقْتَرَبَ مِنْ / أَنْ",
+"أَكْمِلُوا أَعْمَالَكُمْ، الْوَقْتُ اقْتَرَبَ أَنْ يَنْتَهِيَ",
+"Rampungkan pekerjaan kalian, waktunya sebentar lagi habis."
+],
+
+[
+3,
+"Secepatnya",
+"فِي أَسْرَعِ وَقْتٍ مُمْكِنٍ",
+"سَأُنْهِي هَذَا الْعَمَلَ فِي أَسْرَعِ وَقْتٍ مُمْكِنٍ",
+"Saya akan menyelesaikan pekerjaan ini secepatnya."
+],
+
+[
+4,
+"Seharusnya",
+"كَانَ يَجِبُ",
+"كَانَ يَجِبُ أَلَّا يَكُونَ هُوَ فِي الْمَرْكَزِ الْأَوَّلِ",
+"Seharusnya, bukan dia yang juara satu."
+],
+
+[
+5,
+"Sebaiknya",
+"مِنَ الْمُسْتَحْسَنِ",
+"مِنَ الْمُسْتَحْسَنِ أَلَّا نُوَاصِلَ هَذَا الْجِدَالَ",
+"Sebaiknya kita tidak meneruskan perdebatan ini."
+],
+
+[
+6,
+"Sebelum Ini",
+"قَبْلَ هَذَا",
+"سَبَقَ أَنْ جِئْتُ هُنَا قَبْلَ هَذَا",
+"Sebelum ini saya sudah pernah kesini."
+],
+
+[
+7,
+"Sebelum Itu",
+"قَبْلَ ذَلِكَ",
+"يُمْكِنُ أَنْ تُشَارِكَ وَلَكِنْ قَبْلَ ذَلِكَ يَجِبُ أَنْ تُسَجِّلَ أَوَّلًا",
+"Kamu boleh ikut, tapi sebelum itu kamu harus mendaftar dulu."
+],
+
+[
+8,
+"Sebelumnya",
+"فِي وَقْتٍ سَابِقٍ",
+"فِي وَقْتٍ سَابِقٍ دَرَسْنَا الْعَرَبِيَّةَ بِطَرِيقَةٍ تَقْلِيدِيَّةٍ",
+"Sebelumnya, kami belajar bahasa Arab dengan cara tradisional."
+],
+
+[
+9,
+"Salah Satunya",
+"أَحَدُهَا / أَحَدُهُمْ / إِحْدَاهُنَّ",
+"هُنَاكَ أَرْبَعُ أَفْضَلِ نِسَاءِ الْعَالَمِ إِحْدَاهُنَّ مَرْيَمُ بِنْتُ عِمْرَانَ",
+"Ada empat wanita termulia di bumi, salah satunya Maryam putri Imran."
+],
+
+[
+10,
+"Sama Dengan",
+"يُسَاوِي",
+"شَهَادَةُ رَجُلٍ تُسَاوِي شَهَادَةَ امْرَأَتَيْنِ",
+"Kesaksian seorang lelaki sama dengan kesaksian dua orang perempuan."
+],
+
+[
+11,
+"Sama Sekali",
+"عَلَى الْإِطْلَاقِ",
+"فَرِيقُهُمْ لَا يَسْتَحِقُّ الْفَوْزَ عَلَى الْإِطْلَاقِ",
+"Tim mereka sama sekali tidak pantas menang."
+],
+
+[
+12,
+"Sambil",
+"اسم فاعل منصوب - بَاكِيًا",
+"قَصَّ عَلَيَّ قِصَّةَ حَيَاتِهِ بَاكِيًا",
+"Dia menceritakan kisah hidupnya sambil menangis."
+],
+
+[
+13,
+"Setelah Itu",
+"بَعْدَ ذَلِكَ",
+"وَمَاذَا بَعْدَ ذَلِكَ؟",
+"Lalu apa setelah itu?"
+],
+
+[
+14,
+"Setuju / Sepakat",
+"وَافَقَ / اِتَّفَقَ (مع) عَلَى",
+"اِتَّفَقْنَا جَمِيعًا عَلَى أَنَّ تَعَلُّمَ الْعَرَبِيَّةِ وَاجِبٌ",
+"Kita semua sepakat bahwa belajar bahasa Arab itu wajib."
+],
+
+[
+15,
+"Siap (Asshiaap)",
+"حَاضِرٌ",
+"لَا تَتَأَخَّرْ مَرَّةً أُخْرَى! حَاضِرٌ",
+"Jangan Terlambat Lagi! Siap."
+],
+
+[
+16,
+"Siapa Lagi",
+"مَنْ أَيْضًا",
+"مَنْ أَيْضًا الَّذِي لَا يَسْتَطِيعُ الْحُضُورَ غَدًا؟",
+"Siapa Lagi Yang Tidak Bisa Hadir Besok?"
+],
+
+[
+17,
+"Siapapun",
+"أَيًّا كَانَ",
+"أَيًّا كَانَ مُشْرِفُكَ، عَلَيْكَ احْتِرَامُهُ",
+"Siapapun pembimbingmu, kamu harus menghormatinya."
+],
+
+[
+18,
+"Siapa Tahu",
+"مَنْ يَدْرِي",
+"مَنْ يَدْرِي رُبَّمَا هُوَ مَوْجُودٌ فِي بَيْتِهِ",
+"Siapa tahu dia ada di rumahnya."
+],
+
+[
+19,
+"Suatu Hari / Saat",
+"يَوْمًا مَا",
+"سَيَنْدَمُ يَوْمًا مَا عَلَى مَا فَعَلَ بِي",
+"Suatu hari kamu akan menyesal telah jahat sama aku."
+],
+
+[
+20,
+"Sudah Tentu",
+"طَبْعًا",
+"هَذَا الْفِرَاقُ، طَبْعًا، يُحْزِنُنَا جَمِيعًا",
+"Sudah tentu perpisahan ini membuat kita semua sedih."
+],
+
+[
+21,
+"Sudah Waktunya",
+"حَانَ الْوَقْتُ",
+"حَانَ الْوَقْتُ لِتَتَزَوَّجَ وَتَعِيشَ مُسْتَقِلًّا",
+"Sudah waktunya kamu menikah dan hidup mandiri."
+]
+
+];
+
+
+/* =========================================================
+   NAVIGASI
+========================================================= */
+
+function showSection(id){
+
+  document
+    .querySelectorAll("section")
+    .forEach(section=>{
+      section.classList.remove("active");
+    });
+
+  document
+    .getElementById(id)
+    .classList.add("active");
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+}
+
+
+/* =========================================================
+   EFEK LOVE SETIAP TOMBOL
+========================================================= */
+
+function makeHearts(button){
+
+  const rect =
+    button.getBoundingClientRect();
+
+  for(let i=0;i<5;i++){
+
+    const heart =
+      document.createElement("div");
+
+    heart.className="heart";
+
+    heart.innerHTML=[
+      "❤️",
+      "💚",
+      "💗",
+      "💖",
+      "💕"
+    ][
+      Math.floor(Math.random()*5)
+    ];
+
+    heart.style.left =
+      (
+        rect.left +
+        rect.width/2 +
+        (Math.random()*70-35)
+      )+"px";
+
+    heart.style.top =
+      (
+        rect.top +
+        rect.height/2
+      )+"px";
+
+    heart.style.setProperty(
+      "--x",
+      (Math.random()*100-50)+"px"
+    );
+
+    document
+      .getElementById("hearts")
+      .appendChild(heart);
+
+    setTimeout(()=>{
+      heart.remove();
+    },1100);
+
+  }
+}
+
+
+document.addEventListener(
+  "click",
+  function(e){
+
+    const button =
+      e.target.closest("button");
+
+    if(button){
+      makeHearts(button);
+    }
+
+  }
+);
+
+
+/* =========================================================
+   LALARAN
+========================================================= */
+
+let larIndex=0;
+
+let revealed=false;
+
+
+function renderLar(){
+
+  const data =
+    DATA[larIndex];
+
+
+  document
+    .getElementById("larCounter")
+    .textContent =
+      `${data[0]} / ${DATA.length}`;
+
+
+  document
+    .getElementById("larUslub")
+    .textContent =
+      data[2];
+
+
+  document
+    .getElementById("larAnswerText")
+    .textContent =
+      data[1];
+
+
+  document
+    .getElementById("larAnswer")
+    .classList.remove("show");
+
+
+  document
+    .getElementById("revealBtn")
+    .textContent =
+      "👀 Lihat Jawaban";
+
+
+  revealed=false;
+}
+
+
+/* LIHAT JAWABAN */
+
+function revealAnswer(){
+
+  const answer =
+    document.getElementById("larAnswer");
+
+  const button =
+    document.getElementById("revealBtn");
+
+
+  if(!revealed){
+
+    answer.classList.add("show");
+
+    button.textContent =
+      "🙈 Sembunyikan Jawaban";
+
+    revealed=true;
+
+  }
+
+  else{
+
+    answer.classList.remove("show");
+
+    button.textContent =
+      "👀 Lihat Jawaban";
+
+    revealed=false;
+
+  }
+
+}
+
+
+/* SELANJUTNYA */
+
+function nextLar(){
+
+  larIndex++;
+
+  if(larIndex>=DATA.length){
+    larIndex=0;
+  }
+
+  renderLar();
+}
+
+
+/* SEBELUMNYA */
+
+function prevLar(){
+
+  larIndex--;
+
+  if(larIndex<0){
+    larIndex=DATA.length-1;
+  }
+
+  renderLar();
+}
+
+
+/* =========================================================
+   MATERI
+========================================================= */
+
+function renderMateri(){
+
+  const grid =
+    document.getElementById(
+      "materialGrid"
+    );
+
+  grid.innerHTML="";
+
+
+  DATA.forEach(data=>{
+
+    const card =
+      document.createElement("div");
+
+    card.className =
+      "glass material-card";
+
+
+    card.innerHTML=`
+
+      <div class="number">
+        USLUB ${data[0]}
+      </div>
+
+      <div class="material-title">
+        ${data[1]}
+      </div>
+
+      <div class="arabic">
+        ${data[2]}
+      </div>
+
+      <div class="example">
+        ${data[3]}
+      </div>
+
+      <div class="meaning">
+        🇮🇩 ${data[4]}
+      </div>
+
+    `;
+
+
+    grid.appendChild(card);
+
+  });
+
+}
+
+
+/* =========================================================
+   KUIS
+========================================================= */
+
+let quizIndex=0;
+
+let quizAnswered=false;
+
+let score=0;
+
+
+/* SHUFFLE */
+
+function shuffle(array){
+
+  return [...array]
+    .sort(
+      ()=>Math.random()-0.5
+    );
+
+}
+
+
+/* BUAT PILIHAN */
+
+function getOptions(correct){
+
+  const others =
+    DATA
+      .filter(
+        item=>item[4]!==correct
+      )
+      .map(
+        item=>item[4]
+      );
+
+
+  return shuffle(
+    [
+      correct,
+      ...shuffle(others).slice(0,2)
+    ]
+  );
+
+}
+
+
+/* TAMPILKAN KUIS */
+
+function renderQuiz(){
+
+  const data =
+    DATA[quizIndex];
+
+
+  quizAnswered=false;
+
+
+  document
+    .getElementById("quizNumber")
+    .textContent =
+      `Soal ${quizIndex+1} / ${DATA.length}`;
+
+
+  document
+    .getElementById("quizArabic")
+    .textContent =
+      data[3];
+
+
+  document
+    .getElementById("quizResult")
+    .textContent="";
+
+
+  const container =
+    document.getElementById("options");
+
+  container.innerHTML="";
+
+
+  getOptions(data[4])
+    .forEach((option,index)=>{
+
+      const button =
+        document.createElement("button");
+
+      button.className="option";
+
+      button.textContent =
+        `${String.fromCharCode(65+index)}. ${option}`;
+
+
+      button.onclick=()=>{
+
+        answerQuiz(
+          button,
+          option,
+          data[4]
+        );
+
+      };
+
+
+      container.appendChild(button);
+
+    });
+
+}
+
+
+/* JAWAB KUIS */
+
+function answerQuiz(
+  button,
+  selected,
+  correct
+){
+
+  if(quizAnswered){
+    return;
+  }
+
+
+  quizAnswered=true;
+
+
+  document
+    .querySelectorAll(".option")
+    .forEach(btn=>{
+
+      const text =
+        btn.textContent.substring(3);
+
+      if(text===correct){
+
+        btn.classList.add("correct");
+
+      }
+
+    });
+
+
+  if(selected===correct){
+
+    score++;
+
+    document
+      .getElementById("quizResult")
+      .textContent =
+        "✅ Benar!";
+
+    button.classList.add("correct");
+
+  }
+
+  else{
+
+    document
+      .getElementById("quizResult")
+      .textContent =
+        "❌ Kurang tepat. Jawaban yang benar sudah ditandai.";
+
+    button.classList.add("wrong");
+
+  }
+
+}
+
+
+/* SOAL BERIKUTNYA */
+
+function nextQuiz(){
+
+  if(quizIndex<DATA.length-1){
+
+    quizIndex++;
+
+    renderQuiz();
+
+  }
+
+  else{
+
+    document
+      .getElementById("quizResult")
+      .textContent =
+        `🎉 Kuis selesai! Skor kamu: ${score} / ${DATA.length}`;
+
+  }
+
+}
+
+
+/* SOAL SEBELUMNYA */
+
+function prevQuiz(){
+
+  if(quizIndex>0){
+
+    quizIndex--;
+
+    renderQuiz();
+
+  }
+
+}
+
+
+/* =========================================================
+   MUSIK
+========================================================= */
+
+const music =
+  document.getElementById("bgMusic");
+
+let musicPlaying=false;
+
+
+function toggleMusic(){
+
+  if(!musicPlaying){
+
+    music.play()
+
+      .then(()=>{
+
+        musicPlaying=true;
+
+
+        document
+          .getElementById("musicBtn")
+          .textContent =
+            "🔊 Musik ON";
+
+
+        document
+          .getElementById("musicFloating")
+          .textContent =
+            "🔊 Musik ON";
+
+      })
+
+      .catch(()=>{
+
+        alert(
+          "Tekan tombol musik sekali lagi untuk memulai musik."
+        );
+
+      });
+
+  }
+
+  else{
+
+    music.pause();
+
+    musicPlaying=false;
+
+
+    document
+      .getElementById("musicBtn")
+      .textContent =
+        "🎵 Musik";
+
+
+    document
+      .getElementById("musicFloating")
+      .textContent =
+        "🎵 Musik";
+
+  }
+
+}
+
+
+/* =========================================================
+   HUJAN
+========================================================= */
+
+function makeRain(){
+
+  const rain =
+    document.getElementById("rain");
+
+
+  for(let i=0;i<90;i++){
+
+    const drop =
+      document.createElement("div");
+
+
+    drop.className="drop";
+
+
+    drop.style.left =
+      Math.random()*100+"%";
+
+
+    drop.style.height =
+      (10+Math.random()*25)+"px";
+
+
+    drop.style.opacity =
+      .2+Math.random()*.5;
+
+
+    drop.style.animationDuration =
+      (.5+Math.random()*1)+"s";
+
+
+    drop.style.animationDelay =
+      Math.random()*2+"s";
+
+
+    rain.appendChild(drop);
+
+  }
+
+}
+
+
+/* =========================================================
+   MULAI
+========================================================= */
+
+makeRain();
+
+renderLar();
+
+renderMateri();
+
+renderQuiz();
+
+</script>
+
+</body>
+</html>
